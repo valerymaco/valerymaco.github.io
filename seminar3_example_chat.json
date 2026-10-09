@@ -1,0 +1,23 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/valerymaco/valerymaco.github.io/refs/heads/main/CPIAUCSL_PC1%20-%20CPIAUCSL_PC1.csv"
+  },
+  "title": "UK annnual CPI",
+  "width": 550,
+  "height": 200,
+  "mark": {"type": "point", "color": "#FFFD74"},
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "axis": {
+        "title": "annual inflation",
+        "titleFont": "Time New Roman",
+        "labelFontSize": "20"
+      }
+    }
+  },
+  "config": {}
+}
