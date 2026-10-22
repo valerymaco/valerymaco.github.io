@@ -48,7 +48,7 @@ if you find that useful -->
 <!-- The body tag contains the elements that visitors to our page will see. -->
     <h1 class="big" style="margin-bottom: 0px;"> <!-- We have added a class to the header called "big" which we can use to style it in the CSS -->
         <!-- This is a header, it is the largest text on the page -->
-        Your name
+        Valery Maco
     </h1>
     <p style="margin-top: 0px; color: darkblue">
         <!-- we're setting the margin to 0px so the header and authour name are close together -->
@@ -64,7 +64,6 @@ if you find that useful -->
         <div class="chart-description">
             <h2>Task 1</h2>
             <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                Task 1 
                 Hosting. Display charts in your own site 
                 Two charts from Richard Davies' library were integrated.
             </p>
@@ -79,7 +78,6 @@ if you find that useful -->
         <div class="chart-description">
             <h2>Task 2</h2>
             <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-              Task 2
                 Building. Create your own visualisations
             </p>
         </div>
@@ -89,6 +87,18 @@ if you find that useful -->
 
     </section>
 
+        <section>
+        <div class="chart-description">
+            <h2>Task 6 - Week 4</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Transforming to long form data
+            </p>
+        </div>
+
+        <!-- This element will contain our vega-lite chart -->
+        <figure id="Location6"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+
+    </section>
 
     <!-- Do you want to add more sections? -->
         <!-- Try copying pasting the section above -->
@@ -108,7 +118,13 @@ if you find that useful -->
         let chart2 = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine3.json"; // We're storing the URL of the graph we want to display in a variable
         // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
 
-        vegaEmbed('#Location2', chart2) // We're using the vegaEmbed function to put a graph in the element with id figure_1 
+        vegaEmbed('#Location2', chart2)
+        
+         let chart3 = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine3.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location6', chart3)
+        // We're using the vegaEmbed function to put a graph in the element with id figure_1 
         // Do you want to add more graphs?
         // try defining a new variable for figure_2_spec, adding VegaEmbed for Location2, and adding a new section in the HTML
         // e.g. 
