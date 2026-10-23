@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Agriculture value added as a percentage of GDP: Peru, Ecuador and Colombia",
+  "data": {
+    "url": "https://api.worldbank.org/v2/country/ecu;col;pe/indicator/NV.AGR.TOTL.ZS?format=json&per_page=1000",
+    "format": {"type": "json", "property": "1"}
+  },
+  "transform": [{"filter": "datum.value != null"}],
+  "mark": {"type": "line", "point": true},
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "ordinal",
+      "sort": "ascending",
+      "title": "Year"
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Agriculture value added (% of GDP)"
+    },
+    "color": {"field": "country.value", "type": "nominal", "title": "Country"},
+    "tooltip": [
+      {"field": "country.value", "title": "Country"},
+      {"field": "date", "title": "Year"},
+      {"field": "value", "title": "Agriculture (% GDP)", "format": ".2f"}
+    ]
+  },
+  "config": {}
+}
