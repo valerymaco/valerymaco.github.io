@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "CC5 - API chart. Live link to the World Bank API: Peru, exports of goods and services (% of GDP).",
+
+  "title": {
+    "text": "Exports of goods and services (% of GDP), Peru",
+    "subtitle": "Live data from the World Bank API (World Development Indicators).",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#666666",
+    "offset": 12
+  },
+
+  "width": 500,
+  "height": 300,
+
+  "data": {
+    "url": "https://api.worldbank.org/v2/country/per/indicator/NE.EXP.GNFS.ZS?format=json&per_page=100",
+    "format": {"type": "json", "property": "1"}
+  },
+
+  "transform": [
+    {"filter": "datum.value != null"},
+    {"calculate": "toNumber(datum.date)", "as": "year"},
+    {"joinaggregate": [{"op": "max", "field": "year", "as": "lastYear"}]}
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {"zero": false},
+      "axis": {"format": "d", "grid": false, "tickCount": 7}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "% of GDP"
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {"type": "line", "color": "#1f3a5f", "strokeWidth": 2.5}
+    },
+    {
+      "transform": [{"filter": "datum.year == datum.lastYear"}],
+      "mark": {"type": "point", "filled": true, "size": 80, "color": "#1f3a5f", "opacity": 1}
+    },
+    {
+      "transform": [
+        {"filter": "datum.year == datum.lastYear"},
+        {"calculate": "format(datum.value, '.1f') + '% (' + datum.date + ')'", "as": "label"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontWeight": "bold", "fontSize": 13, "color": "#1f3a5f"},
+      "encoding": {"text": {"field": "label"}}
+    }
+  ],
+
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFontSize": 11, "titleFontSize": 11, "titleColor": "#666666"}
+  }
+}
