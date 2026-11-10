@@ -60,7 +60,6 @@ if you find that useful -->
     </h3>
 
     <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
-    <section>
         <div class="chart-description">
             <h2>Task 1</h2>
             <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
@@ -71,9 +70,29 @@ if you find that useful -->
 
         <!-- This element will contain our vega-lite chart -->
         <figure id="Location1"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+    </section>
+ <section>
+        <div class="chart-description">
+            <h2>Another chart</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Two charts from Richard Davies' library were integrated.
+            </p>
+        </div>
+
+        <!-- This element will contain our vega-lite chart -->
+        <figure id="Location4"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+
+        <section>
+            <h2>Task 2</h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Economic Observatory Data Graph usign Create Tool
+            </p>
+        </div>
+
+        <!-- This element will contain our vega-lite chart -->
+        <figure id="Location3"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
 
     </section>
-
     <section>
         <div class="chart-description">
             <h2>Task 2</h2>
@@ -98,13 +117,53 @@ if you find that useful -->
         <!-- This element will contain our vega-lite chart -->
         <figure id="Location6"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
 
-    </section>
+ <section>
+        <div class="chart-description">
+            <h2>Task Week 4 </h2>
+            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
+                Scraping from World Bank Data
+            </p>
+        </div>
 
+        <!-- This element will contain our vega-lite chart -->
+        <figure id="Location7"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+
+    </section>
     <!-- Do you want to add more sections? -->
         <!-- Try copying pasting the section above -->
         <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
         <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
 
+
+            <!-- ===================== CC5. ACCESSING DATA: API ===================== -->
+    <section>
+        <div class="chart-description">
+            <h2>CC5. Accessing data: API</h2>
+            <p>
+                This chart has a live link to the World Bank API: the data is requested each time the page loads,
+                so the chart updates itself when the World Bank publishes new figures.
+            </p>
+        </div>
+
+        <figure id="LocationAPI"></figure>
+
+        <ul style="max-width: 700px;">
+            <li><strong>Base URL:</strong> https://api.worldbank.org/v2/</li>
+            <li><strong>Elements needed to call the data:</strong> after the base URL come the country
+                (<code>country/per</code>, Peru's three-letter code), the indicator
+                (<code>indicator/NE.EXP.GNFS.ZS</code>, exports of goods and services as % of GDP), and two
+                parameters after the "?": <code>format=json</code>, because the API returns XML by default, and
+                <code>per_page=100</code>, so every year since 1960 arrives on a single page (the default is 50).</li>
+            <li><strong>Data returned:</strong> JSON, but not tidy. The response is a list with two parts: the
+                first is metadata (page number, total observations, date of last update) and the second holds
+                the observations. Each observation is one country-year, but "country" and "indicator" are nested
+                objects (each with an "id" and a "value"), the year is stored as text, the most recent year comes
+                first, and missing years appear as null. In the Vega-Lite spec I select the second part with
+                <code>"property": "1"</code>, drop the null values and convert the year to a number.</li>
+            <li><strong>Full URL used:</strong>
+                <code style="word-break: break-all;">https://api.worldbank.org/v2/country/per/indicator/NE.EXP.GNFS.ZS?format=json&amp;per_page=100</code></li>
+        </ul>
+    </section>
 
     <!-- This is a script, it's a way to run JavaScript code on the page -->
     <script>
@@ -120,10 +179,32 @@ if you find that useful -->
 
         vegaEmbed('#Location2', chart2)
         
-         let chart3 = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine3.json"; // We're storing the URL of the graph we want to display in a variable
+        let chart5 = "GraphEconomicObs.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location3', chart5)
+        
+         let chart3 = "taskweek4.json"; // We're storing the URL of the graph we want to display in a variable
         // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
 
         vegaEmbed('#Location6', chart3)
+
+        
+         let chart4 = "Graph2.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location4', chart4)
+        
+
+         let chart7 = "GraphAgriculture.json"; // We're storing the URL of the graph we want to display in a variable
+        // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
+
+        vegaEmbed('#Location7', chart7)
+
+        let chartAPI = "apiChart.json";
+        vegaEmbed('#LocationAPI', chartAPI)
+
+        
         // We're using the vegaEmbed function to put a graph in the element with id figure_1 
         // Do you want to add more graphs?
         // try defining a new variable for figure_2_spec, adding VegaEmbed for Location2, and adding a new section in the HTML
@@ -133,6 +214,8 @@ if you find that useful -->
 
 
     </script>
+
+
 
 </body>
     
