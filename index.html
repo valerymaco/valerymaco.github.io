@@ -134,7 +134,23 @@ if you find that useful -->
         <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
         <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
 
+<!-- ===================== CC5. ACCESSING DATA: SCRAPER ===================== -->
+    <section>
+        <div class="chart-description">
+            <h2>CC5. Accessing data: Scraper</h2>
+            <p>
+                Scraped NOAA's Oceanic Niño Index table with BeautifulSoup. Challenges: repeated header rows,
+                an incomplete current year, and reshaping seasons from columns to long format.
+            </p>
+        </div>
 
+        <figure id="LocationScraper"></figure>
+
+        <p>
+            <strong>Google Colab notebook:</strong>
+            <a href="https://colab.research.google.com/drive/1Pv0OccmvPpK4n6MLseKP8LAdqBlkUMA3?usp=sharing">CC5 scraper notebook</a>
+        </p>
+    </section>
             <!-- ===================== CC5. ACCESSING DATA: API ===================== -->
     <section>
         <div class="chart-description">
@@ -203,6 +219,10 @@ if you find that useful -->
 
         let chartAPI = "apiChart.json";
         vegaEmbed('#LocationAPI', chartAPI)
+
+         // CC5 - Scraper chart: NOAA's El Niño index, scraped in Google Colab
+        let chartScraper = "scraperChart.json";
+        vegaEmbed('#LocationScraper', chartScraper)
 
         
         // We're using the vegaEmbed function to put a graph in the element with id figure_1 
