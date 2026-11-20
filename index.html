@@ -134,18 +134,7 @@ if you find that useful -->
         <!-- You'll need to change the id of the figure "<figure id="Location2"... -->
         <!-- ... and add a new variable for the graph spec in the script at the bottom of the page -->
 
-        <!-- ===================== CC7. MAPS ===================== -->
-    <section>
-        <div class="chart-description">
-            <h2>CC7. MAPS</h2>
-            <p>
-                Map seen in class
-            </p>
-        </div>
 
-        <figure id="Map1"></figure>
-
-    </section>
         
 <!-- ===================== CC5. ACCESSING DATA: SCRAPER ===================== -->
     <section>
@@ -194,6 +183,19 @@ if you find that useful -->
         </ul>
     </section>
 
+        <!-- ===================== CC7. MAPS ===================== -->
+    <section>
+        <div class="chart-description">
+            <h2>CC7. MAPS</h2>
+            <p>
+                Map seen in class
+            </p>
+        </div>
+
+        <figure id="Map1"></figure>
+
+    </section>
+
     <!-- This is a script, it's a way to run JavaScript code on the page -->
     <script>
         // This is a comment in JavaScript - it's a different language to HTML and CSS
@@ -238,7 +240,7 @@ if you find that useful -->
         vegaEmbed('#LocationScraper', chartScraper)
 
       // CC7 - Maps:
-        let Map1 = "map.json";
+        let Map1 = "guinness_2025.json";
         vegaEmbed('#Map1', Map1)
         
         // We're using the vegaEmbed function to put a graph in the element with id figure_1 
